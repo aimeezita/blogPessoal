@@ -1,9 +1,6 @@
 package io.aimeezita.blogpessoal.configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import org.springdoc.core.customizers.OpenApiCustomizer;
+import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,34 +12,30 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 
-/**
- * A Anotação (Annotation) @Configuration indica que a classe é uma fonte
- * de configuração e definição de Beans.
- * 
- */
 @Configuration
 public class SwaggerConfig {
 
 	@Bean
-	public OpenAPI springShopOpenAPI() {
+	public OpenAPI springBlogPessoalOpenAPI() {
 		return new OpenAPI()
 				.info(new Info()
-						.title("Blog Pessoal Aimée")
-						.version("v0.0.1")
-					.license(new License()
-						.name("Aimee Thompson")
-						.url("https://github.com/aimeezita"))
-					.contact(new Contact()
-						.name("Linkedin")
-						.url("https://www.linkedin.com/in/aimeezita/")
-						.email("rosettethompson@gmail.com")))
-					.externalDocs(new ExternalDocumentation()
-						.description("Github")
-						.url("https://github.com/aimeezita"));
+					.title("Projeto Blog Pessoal")
+					.description("Projeto Blog Pessoal - Generation Brasil")
+					.version("v0.0.1")
+				.license(new License()
+					.name("Aimee")
+					.url("https://github.com/aimeezita"))
+				.contact(new Contact()
+					.name("Aimee Thompson")
+					.url("https://linkedin.com/in/aimeezita")
+					.email("conteudogeneration@gmail.com")))
+				.externalDocs(new ExternalDocumentation()
+					.description("Github")
+					.url("https://github.com/conteudoGeneration/"));
 	}
 
 	@Bean
-	public OpenApiCustomizer customerGlobalHeaderOpenApiCustomiser() {
+	public OpenApiCustomiser customerGlobalHeaderOpenApiCustomiser() {
 
 		return openApi -> {
 			openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
@@ -66,5 +59,5 @@ public class SwaggerConfig {
 		return new ApiResponse().description(message);
 
 	}
-
+	
 }
